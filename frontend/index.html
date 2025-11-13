@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PillPal Network - Medicine Redistribution Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>PillPal Network</h1>
+                    <p>Sustainable Medicine Redistribution</p>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="openDonateModal()">
+                <i class="fas fa-plus"></i> Donate Medicine
+            </button>
+        </div>
+    </header>
+
+    <!-- Impact Dashboard -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card metric-emerald">
+                    <div class="metric-header">
+                        <i class="fas fa-box"></i>
+                        <i class="fas fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="metric-value" id="medicinesCount">487</h3>
+                    <p class="metric-label">Medicines Redistributed</p>
+                </div>
+
+                <div class="metric-card metric-teal">
+                    <div class="metric-header">
+                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="metric-value" id="wasteCount">143.5kg</h3>
+                    <p class="metric-label">Pharma Waste Prevented</p>
+                </div>
+
+                <div class="metric-card metric-cyan">
+                    <div class="metric-header">
+                        <i class="fas fa-users"></i>
+                        <i class="fas fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="metric-value" id="peopleCount">312</h3>
+                    <p class="metric-label">People Helped</p>
+                </div>
+
+                <div class="metric-card metric-blue">
+                    <div class="metric-header">
+                        <i class="fas fa-award"></i>
+                        <i class="fas fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="metric-value" id="co2Count">89.2kg</h3>
+                    <p class="metric-label">CO₂ Emissions Saved</p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search medicines or location..." 
+                           onkeyup="filterMedicines()">
+                </div>
+                <div class="filter-buttons" id="categoryFilters">
+                    <button class="filter-btn active" onclick="filterByCategory('All')">All</button>
+                    <button class="filter-btn" onclick="filterByCategory('Pain Relief')">Pain Relief</button>
+                    <button class="filter-btn" onclick="filterByCategory('Antibiotics')">Antibiotics</button>
+                    <button class="filter-btn" onclick="filterByCategory('Chronic Disease')">Chronic Disease</button>
+                    <button class="filter-btn" onclick="filterByCategory('Vitamins')">Vitamins</button>
+                    <button class="filter-btn" onclick="filterByCategory('First Aid')">First Aid</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medicine Grid -->
+    <section class="medicines-section">
+        <div class="container">
+            <div class="medicine-grid" id="medicineGrid">
+                <!-- Medicines will be loaded here dynamically -->
+            </div>
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-box"></i>
+                <p>No medicines found matching your criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Modal -->
+    <div class="modal" id="donateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Donate Medicine</h2>
+                <button class="close-btn" onclick="closeDonateModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Medicine Name</label>
+                    <input type="text" id="medicineName" placeholder="e.g., Paracetamol 500mg" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="medicineCategory">
+                        <option value="Pain Relief">Pain Relief</option>
+                        <option value="Antibiotics">Antibiotics</option>
+                        <option value="Chronic Disease">Chronic Disease</option>
+                        <option value="Vitamins">Vitamins</option>
+                        <option value="First Aid">First Aid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="medicineQuantity" placeholder="Number of units" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="date" id="medicineExpiry" required>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="medicineLocation" placeholder="City" required>
+                </div>
+                <button class="btn-primary btn-full" onclick="submitDonation()">Submit Donation</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Modal -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Medicine</h2>
+                <button class="close-btn" onclick="closeRequestModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="request-details" id="requestDetails">
+                    <!-- Details will be filled dynamically -->
+                </div>
+                <div class="verification-note">
+                    <strong>Verification Required:</strong> Your request will be processed through verified NGO partners. You'll receive confirmation within 24 hours.
+                </div>
+                <button class="btn-primary btn-full" onclick="confirmRequest()">Confirm Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
