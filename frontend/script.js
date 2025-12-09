@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load medicines from backend
 async function loadMedicines() {
     try {
-        const response = await fetch(`${API_URL}/medicines`);
+        const response = await fetch(`${API_URL}/api/medicines`);
         if (!response.ok) {
             throw new Error('Failed to load medicines');
         }
@@ -31,7 +31,7 @@ async function loadMedicines() {
 // Load metrics from backend
 async function loadMetrics() {
     try {
-        const response = await fetch(`${API_URL}/metrics`);
+        const response = await fetch(`${API_URL}/api/metrics`);
         if (!response.ok) {
             throw new Error('Failed to load metrics');
         }
@@ -169,7 +169,7 @@ async function submitDonation() {
     };
 
     try {
-        const response = await fetch(`${API_URL}/medicines`, {
+        const response = await fetch(`${API_URL}/api/medicines`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newMedicine)
@@ -199,7 +199,7 @@ async function confirmRequest() {
     if (!selectedMedicine) return;
 
     try {
-        const response = await fetch(`${API_URL}/medicines/${selectedMedicine._id}/request`, {
+        const response = await fetch(`${API_URL}/api/medicines/${selectedMedicine._id}/request`, {
             method: 'POST'
         });
 
