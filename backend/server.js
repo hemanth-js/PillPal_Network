@@ -78,6 +78,11 @@ const Metrics = mongoose.model('Metrics', metricsSchema);
 
 // ============== ROUTES ==============
 
+// Root route
+app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to PillPal API', health: '/api/health' });
+});
+
 // Health Check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'PillPal API is running' });
