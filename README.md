@@ -1,5 +1,7 @@
 💊 PillPal Network
 
+HOSTED SITE LINK : https://pillpal-network-42gu.onrender.com
+
 Unused Medicine Redistribution Platform
 
 PillPal Network is a community-driven platform that connects people with unused but unexpired medicines to those who need them — through verified NGOs and pharmacies. By enabling responsible medicine redistribution, PillPal reduces pharmaceutical waste and improves access to essential drugs for underserved communities.
