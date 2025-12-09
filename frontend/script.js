@@ -1,5 +1,9 @@
 // API Base URL - Change this to your backend URL
+<<<<<<< HEAD
 const API_URL ='https://pillpal-network-1.onrender.com';
+=======
+const API_URL = 'https://pillpal-network-1.onrender.com/api';
+>>>>>>> 595f0c5bf923b2eef2cb6c4e0f4fe5cdc1490d0c
 
 // Global state
 let medicines = [];
