@@ -11,7 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: 'https://pillpal-network-xs0c.onrender.com',
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -76,17 +79,10 @@ const metricsSchema = new mongoose.Schema({
 
 const Metrics = mongoose.model('Metrics', metricsSchema);
 
-// ============== ROUTES ==============
 
-// Root route
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to PillPal API', health: '/api/health' });
-});
 
-// Health Check
-app.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', message: 'PillPal API is running' });
-});
+
+
 
 // Get all medicines
 app.get('/api/medicines', async (req, res) => {
