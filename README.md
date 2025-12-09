@@ -1,6 +1,6 @@
 💊 PillPal Network
 
-HOSTED SITE LINK : https://pillpal-network-1.onrender.com
+HOSTED SITE LINK : https://pillpal-network-xs0c.onrender.com/
 
 Unused Medicine Redistribution Platform
 
